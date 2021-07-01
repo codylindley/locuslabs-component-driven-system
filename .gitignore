@@ -1,0 +1,7 @@
+node_modules
+built_storybook
+.log
+.DS_Store
+dist
+cypress/videos
+cypress/screenshots

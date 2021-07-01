@@ -1,0 +1,39 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"es2017": true,
+		"es2020": true
+	},
+	"rules": {
+		"no-console": "error",
+		"react/no-unescaped-entities": "off",
+		"react/jsx-uses-react": "off",
+		"react/react-in-jsx-scope": "off"
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended",
+		"plugin:mdx/recommended",
+		"plugin:cypress/recommended"
+	],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly"
+	},
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 11,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "cypress"],
+	"settings": {
+		"react": {
+			"pragma": "React", // Pragma to use, default to "React"
+			"version": "detect" // React version. "detect" automatically picks the version you have installed.
+		}
+	}
+}

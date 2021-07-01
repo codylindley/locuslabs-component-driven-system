@@ -1,0 +1,33 @@
+{
+	"packages": [
+		"ui_components/MOL/desktop/primitive-components/*",
+		"ui_components/MOL/desktop/components/*",
+		"ui_components/MOL/desktop/themes/*",
+		"ui_components/MOL/mobile/primitive-components/*",
+		"ui_components/MOL/mobile/components/*",
+		"ui_components/MOL/mobile/themes/*",
+		"ui_components/MOD/primitive-components/*",
+		"ui_components/MOD/components/*",
+		"ui_components/MOD/themes/*",
+		"ui_components/VMS/primitive-components/*",
+		"ui_components/VMS/components/*",
+		"ui_components/VMS/themes/*",
+		"ui_components/MOK/primitive-components/*",
+		"ui_components/MOK/components/*",
+		"ui_components/MOK/themes/*",
+		"ui_components/utils/*"
+	],
+	"command": {
+		"publish": {
+			"ignoreChanges": [
+				"ui_components/**/*.stories.js",
+				"ui_components/**/*.stories.mdx",
+				"ui_components/**/*.mdx"
+			],
+			"registry": "https://registry.npmjs.org/"
+		}
+	},
+	"version": "independent",
+	"npmClient": "yarn",
+	"useWorkspaces": true
+}
