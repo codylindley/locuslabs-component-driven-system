@@ -1,0 +1,38 @@
+import { stylePropList } from './stylePropList';
+import { ComponentStyleList } from './ComponentStyleList.mdx';
+
+export const ComponentStylingProps = ({
+	styleProps = [
+		'space',
+		'color',
+		'typography',
+		'layout',
+		'flexbox',
+		'grid-layout',
+		'background',
+		'border',
+		'position',
+		'shadow',
+	],
+}) => {
+	const filteredArray = Object.keys(stylePropList).filter((prop) =>
+		styleProps.includes(prop)
+	);
+	return (
+		<>
+			<p>uses: </p>
+			{filteredArray.map((el) => (
+				<>
+					<li>
+						{stylePropList[el].name}:{' '}
+						<a href={stylePropList[el].reference}>Reference</a> |{' '}
+						<a href={stylePropList[el].api}>API</a>
+					</li>
+					<ComponentStyleList propList={stylePropList[el].propList} />
+				</>
+			))}
+		</>
+	);
+};
+
+;

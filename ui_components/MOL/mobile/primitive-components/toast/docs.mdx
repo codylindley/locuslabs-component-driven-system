@@ -1,0 +1,130 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The `<Toast>` component is used to give feedback to users after an action has taken place. The Toast will close itself after a timeout — the default is 4 seconds. The Toast can be hidden by either swiping it left, right or top.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 450 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'onToastDismiss',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: <p>Action that gets fired when the toast hides.</p>,
+		},
+		{
+			propName: 'iconName',
+			type: '<string>',
+			defaultValue: 'info',
+			description: (
+				<p>
+					The name of the icon svg file e.g. `foo.svg` the name would be `foo`.
+				</p>
+			),
+		},
+		{
+			propName: 'hideDelay',
+			type: "'<boolean> || <number>'",
+			defaultValue: '4000 in ms',
+			description: (
+				<p>
+					Set to <code>false</code> if you don't want the Toast to hide
+					automatically. Else, set number in ms, that the Toast should hide
+					after.
+				</p>
+			),
+		},
+		{
+			propName: 'shouldDisplay',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Set to <code>true</code> if you want the Toast to show up initially.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps
+	styleProps={[
+		'space',
+		'color',
+		'layout',
+		'background',
+		'border',
+		'position',
+		'shadow',
+	]}
+/>
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

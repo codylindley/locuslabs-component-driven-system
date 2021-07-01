@@ -1,0 +1,37 @@
+import { Demo } from "/.storybook/shared_react_components/code-sandbox-demo";
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+
+<Meta title="UI Component System Overview/React Common Props & Styled System Props" />
+
+<h1 style={{ marginBottom: '50px' }}>
+	UI Component System Overview : React Common Props & Styling System Props
+</h1>
+
+### Overview
+
+Common props are available on all components (provided by Styled Components) while styling props are only potentially available on a component (see a components documentation to see which styling props it accepts).
+
+---
+
+### Common Props
+
+i.e. the common or global React props that are available to all components are:
+
+<ComponentCommonProps />
+
+---
+
+### Styling System Props
+
+To normalize and facilitate the styling of components via React props components can make use of the props provided by [Styled System](https://styled-system.com/) which add constraint-based CSS React props to components (e.g., alter the CSS background color of a component via a `bg` React prop).
+
+Below is an example of a `<Foo>` component created using [styled components](https://styled-components.com/) and extended with [Styled System](https://styled-system.com/) React props. This arbitrary example should give you an idea of how [Styled System](https://styled-system.com/) props are implemented on React Components created using [styled components](https://styled-components.com/).
+
+<Demo id='exciting-violet-fm4j5' title='exciting-violet-fm4j5' styles={{ height: 950 }} />
+
+The available common styling props are organized into the following catagories:
+
+<ComponentStylingProps />
+
+**Note**: Not all components get all common styling props. The common styling props supported by a component will be listed in the components documentation.

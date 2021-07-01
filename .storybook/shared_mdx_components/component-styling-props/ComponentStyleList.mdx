@@ -1,0 +1,23 @@
+import { ComponentStyleListItem } from './ComponentStyleListItem.mdx';
+
+export const ComponentStyleList = ({ propList }) => {
+	return (
+		<table style={{ width: '100%' }}>
+			<thead>
+				<tr>
+					<th>Prop</th>
+					<th>CSS Property</th>
+					<th>Theme Field</th>
+				</tr>
+			</thead>
+			<tbody>
+				{propList.map(({ propNames, cssProperties, themeField }, index) => (
+					<ComponentStyleListItem
+						key={index}
+						{...{ propNames, cssProperties, themeField }}
+					/>
+				))}
+			</tbody>
+		</table>
+	);
+};

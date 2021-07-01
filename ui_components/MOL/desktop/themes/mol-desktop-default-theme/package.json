@@ -1,0 +1,17 @@
+{
+	"name": "@locus-labs/mol-desktop-default-theme",
+	"version": "0.2.19",
+	"main": "dist/index.js",
+	"module": "index.js",
+	"author": "Cody Lindley <cody@locuslabs.com>",
+	"license": "MIT",
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@csstools/normalize.css": "^11.0.1",
+		"react": "17.0.2"
+	},
+	"gitHead": "eb13cbe0a551ec865ad7ad991af6fa298f9c6558"
+}

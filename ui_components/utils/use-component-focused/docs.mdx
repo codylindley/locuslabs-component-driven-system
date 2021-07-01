@@ -1,0 +1,85 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '../../../.storybook/shared_react_components/code-sandbox-demo';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The Use Component Focused util (React hook) is used to detect if a component was clicked within or not.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 550 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+---
+
+### Parameters
+
+<table>
+	<thead>
+		<tr>
+			<th align="left">Parameter</th>
+			<th align="left">
+				Type <small style={{ color: '#999' }}>(* = required)</small>
+			</th>
+			<th align="left">Default</th>
+			<th align="left" style={{ minWidth: '300px' }}>
+				Description
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td align="left">
+				<code>initialIsFocused</code>
+			</td>
+			<td align="left">
+				<p>boolean</p>
+			</td>
+			<td align="left">
+				<code>undefined</code>
+			</td>
+			<td align="left">
+				<p>Initial focus state</p>
+			</td>
+		</tr>
+	</tbody>
+</table>

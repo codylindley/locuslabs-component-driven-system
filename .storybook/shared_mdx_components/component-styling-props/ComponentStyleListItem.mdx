@@ -1,0 +1,27 @@
+export const ComponentStyleListItem = ({
+	propNames,
+	cssProperties,
+	themeField,
+}) => {
+	return (
+		<tr>
+			<td>
+				{propNames.map((prop, index) => (
+					<>
+						<code>{prop}</code> {propNames.length - 1 > index ? ', ' : ''}
+					</>
+				))}
+			</td>
+			<td>
+				{cssProperties.map((prop, index) => (
+					<>
+						<code>{prop}</code> {cssProperties.length - 1 > index ? ' & ' : ''}
+					</>
+				))}
+			</td>
+			<td>{themeField ? <code>{themeField}</code> : 'none'}</td>
+		</tr>
+	);
+};
+
+;

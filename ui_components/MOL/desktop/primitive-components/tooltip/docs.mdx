@@ -1,0 +1,277 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import DocNestedProp from '/.storybook/shared_react_components/doc-nested-prop';
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+Tooltip is a small, floating content block triggered via hovering over or focusing on an element.
+
+Tooltips are meant to be used primarily for supplemental content and should never get in the way of critical tasks. In most cases, Tooltips should not contain interactive content (such as buttons or links).
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 650 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'content',
+			type: "'<string>* || <function>* || React node/component* '",
+			defaultValue: 'undefined',
+			description: <p>The content to be displayed within the tooltip</p>,
+		},
+		{
+			propName: 'onFirstRenderShowTooltip',
+			type: (
+				<>
+					{'<boolean>'} || <br />
+					<br />
+					{'[{triggerMouseoutAfterXSeconds: <number>, sticky: <boolean>}]'}
+				</>
+			),
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					If true, the tooltip is shown. But will hide once tooltip is
+					mouse/keyboard focused then unfocused. Or, if value is object with
+					<code>triggerMouseoutAfterXSeconds</code> property the tooltip will show
+					then hide after specified delay (e.g. <code>
+						triggerMouseoutAfterXSeconds: 5000
+					</code>). If you pass an object with a <code>sticky:true</code> property
+					the tooltip will remain no matter if a delay has been set or a mouseover
+					then out is performed.
+				</p>
+			),
+		},
+		{
+			propName: 'cancelTooltip',
+			type: '<boolean>',
+			defaultValue: 'true',
+			description: <p>If true, the tooltip will never show.</p>,
+		},
+		{
+			propName: 'placement',
+			type: (
+				<>
+					'auto-start' || 'auto' || <br />
+					'auto-end' || 'top-start' || 'top' ||
+					<br />
+					'top-end' || 'right-start' || 'right' ||
+					<br />
+					'right-end' || 'bottom-end' || 'bottom' ||
+					<br /> 'bottom-start' || 'left-end' || 'left' ||
+					<br />
+					'left-start'
+				</>
+			),
+			defaultValue: "'left'",
+			description: (
+				<p>The placement of the tooltip in relation to the children.</p>
+			),
+		},
+		{
+			propName: 'gutter',
+			type: '<number>',
+			defaultValue: 4,
+			description: (
+				<p>Offset between the reference and the popover on the main axis.</p>
+			),
+		},
+		{
+			propName: 'onShowDelayDuration',
+			type: '<number>',
+			defaultValue: 500,
+			description: (
+				<p>
+					The time (in ms) that a user has to be hovered/focused on the tooltip
+					tripper before the tooltip will appear.
+				</p>
+			),
+		},
+		{
+			propName: 'onHideDelayDuration',
+			type: '<number>',
+			defaultValue: 0,
+			description: (
+				<p>
+					How many degrees the icon should be rotated. Negative numbers rotate
+					the icon counter clockwise and positive numbers rotate the icon
+					clockwise.
+				</p>
+			),
+		},
+		{
+			propName: 'onShowOpacityAnimation',
+			type: (
+				<DocNestedProp>
+					{`{
+	duration: <number>,
+	timing: <string>,
+}`}
+				</DocNestedProp>
+			),
+			defaultValue: (
+				<DocNestedProp>
+					{`{
+	duration: 200,
+	timing: 'ease'
+}`}
+				</DocNestedProp>
+			),
+			description: (
+				<p>
+					The duration and type of timing-function used when the tooltip is
+					shown. MDN reference:{' '}
+					<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function">
+						https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
+					</a>
+				</p>
+			),
+		},
+		{
+			propName: 'onHideOpacityAnimation',
+			type: (
+				<DocNestedProp>
+					{`{
+	duration: <number>,
+	timing: <string>,
+}`}
+					,
+				</DocNestedProp>
+			),
+			defaultValue: (
+				<DocNestedProp>
+					{`{
+	duration: 200,
+	timing: 'ease'
+}`}
+					,
+				</DocNestedProp>
+			),
+			description: (
+				<p>
+					The duration and type of timing-function used when the tooltip is
+					hidden. MDN reference:{' '}
+					<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function">
+						https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
+					</a>
+				</p>
+			),
+		},
+		{
+			propName: 'tooltipZIndex',
+			type: '<number>',
+			defaultValue: 20100,
+			description: (
+				<p>
+					The CSS <code>z-index</code> property of the tooltip.
+				</p>
+			),
+		},
+		{
+			propName: 'arrowColor',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Color value for the tooltip arrow fill. If not defined, then{' '}
+					<code>theme.colors.toolTipBackground</code> will be used.
+				</p>
+			),
+		},
+		{
+			propName: 'hideDelay',
+			type: '<number>',
+			defaultValue: 'undefined',
+			description: <p>Tooltip hide delay in ms.</p>,
+		},
+		{
+			propName: 'clickingTriggerBlinksTooltip',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Set to <code>true</code> to make the tooltip blink when the tooltip
+					trigger is clicked.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps
+	styleProps={[
+		'space',
+		'color',
+		'typography',
+		'layout',
+		'background',
+		'border',
+		'shadow',
+	]}
+/>
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

@@ -1,0 +1,57 @@
+describe('Primary Navigation Button Component', () => {
+	// Note the use of `before`
+	before(() => {
+		// Visit the storybook iframe page once per file
+		cy.visitStorybook();
+	});
+
+	// Note the use of `beforeEach`
+	beforeEach(() => {
+		// The first parameter is the category. This is the `title` in CSF or the value in `storiesOf`
+		// The second parameter is the name of the story. This is the name of the function in CSF or the value in the `add`
+		// This does not refresh the page, but will unmount any previous story and use the Storybook Router API to render a fresh new story
+		cy.loadStory(
+			'MOK Components/Primitive Components/Primary Navigation Button',
+			'OnClick'
+		);
+	});
+
+	it('OnClick', () => {
+		cy.get('[data-cy=Text]')
+			.eq(0)
+			.should('have.text', 'Default click count: 0');
+		cy.get('[data-cy=Text]').eq(1).should('have.text', 'Admin click count: 0');
+
+		cy.get('[data-cy=PrimaryNavigationButtonContainer]')
+			.eq(0)
+			.should('have.css', 'color', 'rgb(18, 76, 177)')
+			.should('have.css', 'background-color', 'rgb(255, 255, 255)');
+		cy.get('[data-cy=PrimaryNavigationButtonContainer]')
+			.eq(1)
+			.should('have.css', 'color', 'rgb(18, 76, 177)')
+			.should('have.css', 'background-color', 'rgb(255, 255, 255)');
+
+		cy.get('[data-cy=Icon]')
+			.eq(0)
+			.should('have.css', 'color', 'rgb(18, 76, 177)')
+			.should('have.attr', 'name', 'home');
+		cy.get('[data-cy=Icon]')
+			.eq(1)
+			.should('have.css', 'color', 'rgb(18, 76, 177)')
+			.should('have.attr', 'name', 'help.outline');
+		//
+		cy.get('[data-cy=PrimaryNavigationButtonContainer]').eq(0).trigger('click');
+
+		cy.get('[data-cy=Text]')
+			.eq(0)
+			.should('have.text', 'Default click count: 1');
+		cy.get('[data-cy=Text]').eq(1).should('have.text', 'Admin click count: 0');
+
+		cy.get('[data-cy=PrimaryNavigationButtonContainer]').eq(1).trigger('click');
+
+		cy.get('[data-cy=Text]')
+			.eq(0)
+			.should('have.text', 'Default click count: 1');
+		cy.get('[data-cy=Text]').eq(1).should('have.text', 'Admin click count: 1');
+	});
+});

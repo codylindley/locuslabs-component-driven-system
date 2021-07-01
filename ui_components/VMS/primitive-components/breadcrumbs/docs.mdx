@@ -1,0 +1,115 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import DocNestedProp from '/.storybook/shared_react_components/doc-nested-prop';
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The breadcumbs is a type of secondary navigation scheme that reveals the user’s location. The breadcrumbs navigation should be regarded as an extra feature and shouldn’t replace effective primary navigation menus. It’s a convenience feature - a secondary navigation scheme - that allows users to establish where they are and an alternative way to navigate around the web-app.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 750 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'items',
+			type: (
+				<DocNestedProp>
+					{`[{
+	label: <string>*,
+}]`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Array of items where the <code>label</code> prop is displayed in the
+					breadcrumbs.
+				</p>
+			),
+		},
+		{
+			propName: 'onBreadcrumbClick',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Callback called a breadcrumb is clicked. The index of such item is the
+					argument of this function.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+uses:
+
+- layout: [Reference](https://styled-system.com/table#layout) | [API](https://styled-system.com/api#layout)
+
+<ComponentStylingProps styleProps={['layout']} />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

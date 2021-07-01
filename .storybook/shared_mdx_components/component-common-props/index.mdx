@@ -1,0 +1,54 @@
+import { ComponentProps } from '../component-props/index.mdx';
+
+export const ComponentCommonProps = () => {
+	return (
+		<ComponentProps
+			items={[
+				{
+					propName: 'as',
+					type: '<string> || react node/component',
+					defaultValue: 'undefined',
+					description: (
+						<p>
+							Switch out the root HTML element or React component use by a
+							component. For instance,{' '}
+							<code>&lt;Box as=&quot;span&quot; /&gt;</code> would render the
+							Box component as a span tag instead of the default div used by the
+							Box component. <br />
+							This property is available to all LocusLabs components because all
+							LocusLabs components are constructed using <a href="https://styled-components.com/">
+								styled components
+							</a> and styled components provides the <code>as</code> prop (see <a href="https://styled-components.com/docs/api#as-polymorphic-prop">
+								styled components documentation on the prop
+							</a>
+							).
+						</p>
+					),
+				},
+				{
+					propName: 'forwardAs',
+					type: '<string> || react node/component',
+					defaultValue: 'undefined',
+					description: (
+						<p>
+							Switch out the root HTML element or React component use by a
+							component. For instance,{' '}
+							<code>&lt;Box as=&quot;span&quot; /&gt;</code> would render the
+							Box component as a span tag instead of the default div used by the
+							Box component.
+							<br />
+							This property is available to all LocusLabs components because all
+							LocusLabs components are constructed using{' '}
+							<a href="https://styled-components.com/">styled components</a> and
+							styled components provides the <code>as</code> prop (see{' '}
+							<a href="https://styled-components.com/docs/api#as-polymorphic-prop">
+								styled components documentation on the prop
+							</a>
+							).
+						</p>
+					),
+				},
+			]}
+		/>
+	);
+};

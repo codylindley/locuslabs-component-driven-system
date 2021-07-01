@@ -1,0 +1,18 @@
+{
+	"name": "@locus-labs/utils-use-component-focused",
+	"version": "0.0.27",
+	"main": "dist/index.js",
+	"module": "index.js",
+	"peerDependencies": {
+		"react": "^17.0.1"
+	},
+	"author": "Dominika Podgórska <dominika@locuslabs.com>",
+	"license": "MIT",
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"codeSandboxId": "utils-use-component-focused-s8dt5",
+	"componentType": "primitive",
+	"gitHead": "eb13cbe0a551ec865ad7ad991af6fa298f9c6558"
+}

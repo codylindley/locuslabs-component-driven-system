@@ -1,0 +1,69 @@
+<Meta title="UI Component System Overview/Introduction" />
+
+<h1 style={{ marginBottom: '50px' }}>
+	UI Component System Overview : Introduction
+</h1>
+
+### UI Component System Purpose:
+
+Engineer and maintain React UI components that can be handed off to application developers that will facilitate UI consistency and integrity by focusing on component specifications, automated component testing, and component documentation.
+
+Component specifications are not application/feature specifications. The creation of component specifications is not done without or in lieu of a robust set of feature specifications. Component specifications focus squarely on component development and fall out of an applications features.
+
+---
+
+### UI Component System Tenets:
+
+- Components are first divided by product/application (logical usage groupings e.g. this set of components builds out X application), then by device (e.g. mobile, tables, desktop), then by either being a domain component or a primitive component.
+- Components are [React function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components).
+- Components should be considered pure functions in that they return the same output given the same input via [React props](https://reactjs.org/docs/components-and-props.html).
+- Components should be viewed similar to HTML form elements from Reacts perspective. Components are intended to be [controlled components](https://reactjs.org/docs/forms.html#controlled-components) and will often have internal state but usage assumes re-rendering by wrapped React state by way of updated props.
+- Components are built and documented within [Storybook](https://storybook.js.org/docs/react/get-started/introduction).
+- Components use CSS in JS via [Style Components](https://styled-components.com/) (i.e. a .css file is not required at runtime or part of npm packages).
+- Components are themeable using Style Components [ThemeProvider](https://styled-components.com/docs/advanced#theming).
+- Components make use of [Styled System](https://styled-system.com/) css props.
+- Components and themes are individual npm packages that can be installed using npm CLI or yarn CLI from npmjs.com.
+- Components are built with Accessibility and Internationalization/Globalization in mind.
+- Components are tested for visually consistency and regressions using [Percy](https://percy.io/).
+- Components are tested end to end (i.e. functional testing) using [Cypress](https://www.cypress.io/).
+- Components don't embed non-web-safe fonts defined in themes or components (i.e. the consumer of the component is responsible to make sure the correct fonts are loaded at runtime by looking at the theme and making sure any non-web-safe fonts are available at runtime).
+
+---
+
+### Available Components:
+
+The components are organized by Application > Device (if necessary) > Domain/Primitive components. You will see this organization reflected in the menu on this page to the left of this sentence.
+
+The way in which the UI Components are organized dispenses with the idea of a generic UI component system that may or may not get used in unknown futures/features with a component system that is tailored for each application or use case. This allows component development to have the proper separation of concerns and the simplest most maintainable implementation because cross cutting concerns are restricted (i.e. a generic button isn't built assuming it could ever meet the needs of all known and or unknown applications or usages). The added benefit of organizing components in this fashion is the ability to compose domain components from non-generic primitive components.
+
+The notion of re-use is swallowed up by the fact this is all done in a monorepo using yarn workspaces and lerna to manage individual component packages.
+
+**Domain Component v.s. Primitive Component?**
+
+A domain component is a component that does not have any obvious UI re-use but exists to provide application developers with more than just simplistic and generic re-usable components (i.e., a unique view or specific "organism/molecule" to borrow from Atomic Design). These components are often complex and take up a lot of the user's attention and view within a user interface (e.g., an entire header or footer or a complex domain-specific search UI).
+
+Primitive components are typically more generic (e.g., buttons, Icons, Modals, etc.) than specific (e.g., a header) and have an apparent re-usable nature within the UI (i.e., similar to "Atoms" from Atomic Design). Domain components often consume primitive components.
+
+---
+
+### Prior Art
+
+UI Components:
+
+- [Ant Design](https://ant.design/components/overview/)
+- [Racine](https://seeds.sproutsocial.com/components/)
+- [Material-UI](https://material-ui.com/)
+- [Chakra](https://chakra-ui.com/)
+- [WUI](https://www.welcome-ui.com/)
+- [Blueprint](https://blueprintjs.com/docs/)
+- [Bold](https://bold.bridge.ufsc.br/en/)
+- [Base](https://baseweb.design/)
+- [Spectrum](https://react-spectrum.adobe.com/react-spectrum/index.html)
+
+Theory:
+
+- [Component Driven User Interfaces](https://www.componentdriven.org/) & [Component-Driven Development](https://www.chromatic.com/blog/component-driven-development/)
+- [Build Components Not Apps](https://www.youtube.com/watch?v=yDjTcBKXKDE&t=2s)
+- [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+- [Building Micro Frontends with Components](https://devblogs.microsoft.com/startups/building-micro-frontends-with-components/)
+- [Independent Components: The Web’s New Building Blocks](https://blog.bitsrc.io/independent-components-the-webs-new-building-blocks-59c893ef0f65)

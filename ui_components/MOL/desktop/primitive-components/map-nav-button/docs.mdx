@@ -1,0 +1,140 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+Button used over the top of a map to control the map e.g. Zoom.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'iconName',
+			type: '<string>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The name of the icon svg file e.g. <code>foo.svg</code> the name would
+					be <code>foo</code>.
+				</p>
+			),
+		},
+		{
+			propName: 'isRippleClickEffectCentered',
+			type: '<boolean>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					By default the button will produce a ripple effect that ripples from
+					where the mouse pointer clicks. To have the ripple effect always
+					ripple from the center of the button set{' '}
+					<code>isRippleClickEffectCentered</code>
+					to <code>true</code>.
+				</p>
+			),
+		},
+		{
+			propName: 'degreesOfIconRotation',
+			type: '<number>',
+			defaultValue: 0,
+			description: (
+				<p>
+					How many degrees the icon should be rotated. Negative numbers rotate
+					the icon counter clockwise and positive numbers rotate the icon
+					clockwise.
+				</p>
+			),
+		},
+		{
+			propName: 'ariaLabel',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Use <code>ariaLabel</code> to define a string that labels the current
+					element. You can also pass the label text as children.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps
+	styleProps={[
+		'space',
+		'color',
+		'grid-layout',
+		'background',
+		'border',
+		'position',
+		'shadow',
+	]}
+/>
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

@@ -1,0 +1,137 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The pin component is used to select a location to display on the map view in the end user design.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="locuslabs-ui-components-themes--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'pinSize',
+			type: "'md' || 'xl'",
+			defaultValue: "'xl'",
+			description: <p>The size of the pin.</p>,
+		},
+		{
+			propName: 'iconName',
+			type: '<string>',
+			defaultValue: "'pin.selected'",
+			description: (
+				<p>
+					The name of the icon svg file e.g. `foo.svg` the name would be `foo`.
+				</p>
+			),
+		},
+		{
+			propName: 'degreesOfIconRotation',
+			type: '<number>',
+			defaultValue: 0,
+			description: (
+				<p>
+					How many degrees the icon should be rotated. Negative numbers rotate
+					the icon counter clockwise and positive numbers rotate the icon
+					clockwise.
+				</p>
+			),
+		},
+		{
+			propName: 'iconColor',
+			type: '<string>',
+			defaultValue: "theme.colors.miscBadgePinStroke || '#000000'",
+			description: <p>The icon color.</p>,
+		},
+		{
+			propName: 'border',
+			type: '<string>',
+			defaultValue: "theme.colors.miscBadgePinStroke || '#000000'",
+			description: <p>The the border around pin.</p>,
+		},
+		{
+			propName: 'fill',
+			type: '<string>',
+			defaultValue: "theme.colors.miscBadgePinColor || '#000000'",
+			description: <p>The color of pin.</p>,
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="locuslabs-ui-components-common-props-common-styling-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps
+	styleProps={[
+		'space',
+		'layout',
+		'flexbox',
+		'grid-layout',
+		'position',
+		'shadow',
+	]}
+/>
+
+see <LinkTo kind="locuslabs-ui-components-common-props-common-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

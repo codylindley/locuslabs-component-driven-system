@@ -1,0 +1,157 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The text area input allows users to enter and edit text in the application.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 400 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'value',
+			type: '<string>*',
+			defaultValue: 'undefined',
+			description: <p>Input value.</p>,
+		},
+		{
+			propName: 'onValueChange',
+			type: '<function>*',
+			defaultValue: 'undefined',
+			description: <p>The function to be called when input value changes.</p>,
+		},
+		{
+			propName: 'placeholder',
+			type: '<string>*',
+			defaultValue: 'undefined',
+			description: <p>Input placeholder.</p>,
+		},
+		{
+			propName: 'label',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: <p>Input label.</p>,
+		},
+		{
+			propName: 'ariaLabel',
+			type: '<string>',
+			defaultValue: "'input text'",
+			description: (
+				<p>
+					Used for input ARIA label. Will only be used if <code>label</code>{' '}
+					prop was not defined.
+				</p>
+			),
+		},
+		{
+			propName: 'rows',
+			type: '<number>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Text are rows. If this props is not provided, the text area will
+					autogrow until it reaches 10 rows, it will scroll afterwards.{' '}
+				</p>
+			),
+		},
+		{
+			propName: 'maxCharacterCount',
+			type: '<number>',
+			defaultValue: 'false',
+			description: <p>Maximum character count.</p>,
+		},
+		{
+			propName: 'isUnsaved',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					If set to <code>true</code>, will display unsaved changes indicator
+					next to the label. Will only be displayed if <code>label</code> was
+					defined.
+				</p>
+			),
+		},
+		{
+			propName: 'errorMessage',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					If defined, will set component state to error state and display error
+					message below input.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

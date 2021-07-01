@@ -1,0 +1,334 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import DocNestedProp from '/.storybook/shared_react_components/doc-nested-prop';
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The select allows users to single or multiselect values from a dropdown list of options.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 400 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'placeholder',
+			type: '<string>',
+			defaultValue: 'Select option',
+			description: <p>Input placeholder.</p>,
+		},
+		{
+			propName: 'label',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: <p>Input label.</p>,
+		},
+		{
+			propName: 'ariaLabel',
+			type: '<string>',
+			defaultValue: "'input text'",
+			description: (
+				<p>
+					Used for input ARIA label. Will only be used if <code>label</code>{' '}
+					prop was not defined.
+				</p>
+			),
+		},
+		{
+			propName: 'onInputChange',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when input value changes. Use if you want to
+					handle current input value. Should accept string as a param (input
+					value).
+				</p>
+			),
+		},
+		{
+			propName: 'onSelectChange',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when select value changes. Should accept
+					object and array of objects as a param. Options that were added by
+					user will have <code>isCustomOption</code> prop set to{' '}
+					<code>true</code>.
+				</p>
+			),
+		},
+		{
+			propName: 'options',
+			type: (
+				<DocNestedProp>
+					{`[{
+	value: <string>*,
+	label: <string>*,
+	hasBadge: <boolean>,
+	iconName: <string>,
+	iconColor: <string>,
+	badgeColor: <string>,
+	tooltipContent: <string>,
+}]`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: (
+				<>
+					<p>Array of options (objects) that user can choose from.</p>
+					<p>
+						where:
+						<br />
+						<code>value</code>: option value
+						<br />
+						<code>label</code>: option display text
+						<br />
+						<code>hasBadge</code>: set to <code>true</code> if Badge should be
+						displayed instead of Icon. Needs <code>iconName</code> to be defined
+						in order to work, otherwise nothing will be displayed.
+						<br />
+						<code>iconName</code>: the name of the icon svg file e.g. `foo.svg`
+						the name would be `foo`.
+						<br />
+						<code>iconColor</code>: color of the icon.
+						<br />
+						<code>tooltipContent</code>: tooltip's content
+						<br />
+						<code>badgeColor</code>: fill color of the badge.{' '}
+						<code>theme.colors.categoryBadgeEat</code> will be used by default
+					</p>
+				</>
+			),
+		},
+		{
+			propName: 'value',
+			type: <DocNestedProp>{`[{...}] || {...}`}</DocNestedProp>,
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Array of options (objects) or single option (object) that will be set
+					as the value in the input. See
+					<code>options</code> prop for further explanation on option props. Multiple
+					options will be displayed only in component with multi selection enabled
+					(see <code>isMulti</code> prop).
+				</p>
+			),
+		},
+		{
+			propName: 'inputIcon',
+			type: (
+				<DocNestedProp>
+					{`[{
+	hasBadge: <boolean>,
+	iconName: <string>,
+	iconColor: <string>,
+	badgeColor: <string>,
+}]`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: (
+				<>
+					<p>
+						Input icon/badge, where:
+						<code>hasBadge</code>: set to <code>true</code> if Badge should be displayed
+						instead of Icon. Needs <code>iconName</code> to be defined in order to
+						work, otherwise nothing will be displayed.
+						<br />
+						<code>iconName</code>: the name of the icon svg file e.g. `foo.svg` the
+						name would be `foo`.
+						<br />
+						<code>iconColor</code>: color of the icon.
+						<br />
+						<code>badgeColor</code>: fill color of the badge. <code>
+							theme.colors.categoryBadgeEat
+						</code> will be used by default
+					</p>
+					<p>
+						If option with icon/badge was selected, it will replace this icon.
+					</p>
+				</>
+			),
+		},
+		{
+			propName: 'disabled',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: <p>Whether to disable selection.</p>,
+		},
+		{
+			propName: 'isUnsaved',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					If set to <code>true</code>, will display unsaved changes indicator
+					next to the label. Will only be displayed if <code>label</code> was
+					defined.
+				</p>
+			),
+		},
+		{
+			propName: 'isSearchable',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: <p>Whether to enable search functionality.</p>,
+		},
+		{
+			propName: 'isMulti',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: <p>Whether to support multiple options selection.</p>,
+		},
+		{
+			propName: 'allowCreating',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Whether to allow creating custom option. Needs{' '}
+					<code>isSearchable</code> to be enabled as user needs to type to input
+					custom option.
+				</p>
+			),
+		},
+		{
+			propName: 'customOptionText',
+			type: '<string>',
+			defaultValue: "'Create new'",
+			description: <p>Custom option prefix.</p>,
+		},
+		{
+			propName: 'noResultsInfo',
+			type: '<string>',
+			defaultValue: "'Sorry, no results were found.'",
+			description: (
+				<p>
+					Message displayed if no options match search criteria or options list
+					is empty.
+				</p>
+			),
+		},
+		{
+			propName: 'errorMessage',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					If defined, will set component state to error state and display error
+					message below input.
+				</p>
+			),
+		},
+		{
+			propName: 'filterOption',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Custom method to filter whether an option should be displayed in the
+					menu. It will be called for each element from <code>options</code>{' '}
+					array. It should accept two params: option that is being checked and
+					input value. It should return boolean value, <code>true</code> if
+					option should display on the list.
+				</p>
+			),
+		},
+		{
+			propName: 'filterConfig',
+			type: (
+				<DocNestedProp>
+					{`{
+	ignoreCase: <boolean>,
+	ignoreAccents: <boolean>,
+	stringify: <function>,
+	trim: <boolean>,
+	matchFrom: 'any' || 'start',
+}`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					If you want to apply custom options filtering without having to
+					rewrite the logic, pick and choose bits of the filtration logic to
+					customise. See{' '}
+					<a href="https://react-select.com/advanced#custom-filter-logic">
+						React-Select documentation
+					</a>
+					.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

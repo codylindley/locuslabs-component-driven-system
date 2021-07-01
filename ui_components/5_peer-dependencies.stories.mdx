@@ -1,0 +1,61 @@
+<Meta title="UI Component System Overview/Peer Dependencies" />
+
+import LinkTo from '@storybook/addon-links/react';
+import packageJSON from '../package.json';
+
+<h1 style={{ marginBottom: '50px' }}>
+	UI Component System Overview : Peer Dependencies
+</h1>
+
+UI components treat the following npm packages as npm [peer dependencies](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#peerdependencies) as opposed to dependencies.
+
+<ol>
+	<li>
+		<a
+			href="https://www.npmjs.com/package/react"
+			target="_blank"
+			rel="nofollow noopener noreferrer"
+		>
+			react
+		</a>
+		= {packageJSON.devDependencies.react}
+	</li>
+	<li>
+		<a
+			href="https://www.npmjs.com/package/react-dom"
+			target="_blank"
+			rel="nofollow noopener noreferrer"
+			class="sbdocs-a css-19nbuh3"
+		>
+			react-dom
+		</a>
+		= {packageJSON.devDependencies['react-dom']}
+	</li>
+	<li>
+		<a
+			href="https://www.npmjs.com/package/styled-components"
+			target="_blank"
+			rel="nofollow noopener noreferrer"
+		>
+			styled-components
+		</a>
+		= {packageJSON.devDependencies['styled-components']}
+	</li>
+	<li class=" css-1ta8r1d">
+		<a
+			href="https://www.npmjs.com/package/polished"
+			target="_blank"
+			rel="nofollow noopener noreferrer"
+		>
+			polished
+		</a>
+		= {packageJSON.devDependencies['polished']}
+		(used for normalize.css applied with{' '}
+		<LinkTo kind="ui-component-system-overview-themes-component-usage--page">
+			theme
+		</LinkTo>
+		)
+	</li>
+</ol>
+
+The npm packages listed above are assume to be available when using/implementing one of the components found in this UI component system.

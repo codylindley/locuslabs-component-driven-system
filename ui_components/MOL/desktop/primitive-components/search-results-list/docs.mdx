@@ -1,0 +1,273 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import DocNestedProp from '/.storybook/shared_react_components/doc-nested-prop';
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The Search Results List is a component used to render collapsible content with search results items within the Exploration UI.
+
+Supported search results items:
+
+- search suggestions
+- search terms
+- search POIs section (including section title and section POIs items)
+
+The search results items list is lazyloaded and virtualized, which improves performance by only rendering the DOM nodes that user is able to see based on their current scroll position.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 500 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'threshold',
+			type: '<number>',
+			defaultValue: 10,
+			description: (
+				<p>
+					Threshold at which to load new set of rows. A threshold X means that
+					new rows will start loading when a user scrolls within X rows.
+					Defaults to 10.
+				</p>
+			),
+		},
+		{
+			propName: 'cancelDefaultScrollToTop',
+			type: '<boolean>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The search results list has to scroll up in certain cases, such as:
+					list items change, filter change. Set to <code>false</code> if you
+					want to prevent the scroll to top, for example if you want to update
+					the data and not render a new set.
+				</p>
+			),
+		},
+		{
+			propName: 'shouldUpdateElements',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Set to <code>true</code> if you want to re-render list elements with
+					the same amount of loaded (scrolled) items as were loaded in previous
+					render. To preserve list scroll position set
+					<code>cancelDefaultScrollToTop</code> prop to
+					<code>true</code>.
+				</p>
+			),
+		},
+		{
+			propName: 'suggestedSearchesArray',
+			type: (
+				<DocNestedProp>
+					{`[{
+	searchTerm*: <string>,
+	name*: <string>,
+	badgeIcon*: <string>,
+	badgeIconColor: <string>,
+	badgeColor: <string>,
+	badgeOutlineColor: <string>,
+}]`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: <p>Array of suggested searches (objects).</p>,
+		},
+		{
+			propName: 'searchTermsArray',
+			type: '[<string>]',
+			defaultValue: 'undefined',
+			description: <p>Array of search terms (strings).</p>,
+		},
+		{
+			propName: 'searchPOIsSections',
+			type: (
+				<DocNestedProp>
+					{`[{
+	sectionTitle: <string>,
+	searchPOIsArray: [{
+		iconName*: <string>,
+		primaryLabel*: <string>,
+		secondaryLabel*: <string>,
+		status: {
+			type*: 'alert' | 'active' | 'inactive' | 'warning' | 'info',
+			text*: <string>,
+			pulsingStatusOn: <boolean>,
+		},
+	}],
+}]`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: <p>Array of POIs search rows (objects).</p>,
+		},
+		{
+			propName: 'noSearchResultsInfo',
+			type: (
+				<DocNestedProp>
+					{`{
+	primaryLabel*: <string>,
+	secondaryLabel*: <string>,
+}`}
+				</DocNestedProp>
+			),
+			defaultValue: 'undefined',
+			description: <p>Info that displays when no search results were found.</p>,
+		},
+		{
+			propName: 'isContentOpen',
+			type: '<boolean>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Set to <code>true</code> if Collapsible Content is expanded. Set to{' '}
+					<code>false</code> if Collapsible Content is collapsed.
+				</p>
+			),
+		},
+		{
+			propName: 'isLoading',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Set to <code>true</code> if you want to manually force loading
+					indicator to show up, e.g. on initial load.
+				</p>
+			),
+		},
+		{
+			propName: 'collapsePanelTooltipContent',
+			type: '<string>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The content used for the tooltip that appears on the collapse button
+					when content is expanded.
+				</p>
+			),
+		},
+		{
+			propName: 'expandPanelTooltipContent',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The content used for the tooltip that appears on the collapse button
+					when content is collapsed.
+				</p>
+			),
+		},
+		{
+			propName: 'onCollapseButtonClick',
+			type: '<function>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>The function to be called when collapse/expand button is clicked.</p>
+			),
+		},
+		{
+			propName: 'onPOIClick',
+			type: '<function>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when the POI row is clicked. POI object will
+					be passed as a param.
+				</p>
+			),
+		},
+		{
+			propName: 'onTermClick',
+			type: '<function>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when the Term row is clicked. Search term
+					string will be passed as a param.
+				</p>
+			),
+		},
+		{
+			propName: 'onSuggestionClick',
+			type: '<function>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when the Suggestion row is clicked.
+					Suggestion object will be passed as a param.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

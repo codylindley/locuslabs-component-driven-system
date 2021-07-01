@@ -1,0 +1,74 @@
+describe('Badge Component', () => {
+	// Note the use of `before`
+	before(() => {
+		// Visit the storybook iframe page once per file
+		cy.visitStorybook();
+	});
+
+	// Note the use of `beforeEach`
+	beforeEach(() => {
+		// The first parameter is the category. This is the `title` in CSF or the value in `storiesOf`
+		// The second parameter is the name of the story. This is the name of the function in CSF or the value in the `add`
+		// This does not refresh the page, but will unmount any previous story and use the Storybook Router API to render a fresh new story
+		cy.loadStory(
+			'MOD Components/Primitive Components/Badge',
+			'BadgeSizesAndColor'
+		);
+	});
+
+	it('Story: Badge Sizes And Color - xs', () => {
+		cy.get('[data-cy=Badge]:eq(0) [data-cy=Box]:eq(0) svg')
+			.should('exist') // is in dom
+			.and('have.css', 'height', '16px')
+			.and('have.css', 'width', '16px');
+		cy.get('[data-cy=Badge]:eq(0) [data-cy=Box]:eq(0) svg path')
+			.should('exist') // is in dom
+			.and('have.attr', 'stroke', 'white')
+			.and('have.attr', 'fill', 'purple');
+		cy.get('[data-cy=Badge]:eq(0) [data-cy=Icon]')
+			.should('exist') // is in dom
+			.and('have.attr', 'color', 'white');
+	});
+
+	it('Story: Badge Sizes And Color - sm', () => {
+		cy.get('[data-cy=Badge]:eq(1) [data-cy=Box]:eq(0) svg')
+			.should('exist') // is in dom
+			.and('have.css', 'height', '28px')
+			.and('have.css', 'width', '28px');
+		cy.get('[data-cy=Badge]:eq(1) [data-cy=Box]:eq(0) svg path')
+			.should('exist') // is in dom
+			.and('have.attr', 'stroke', 'white')
+			.and('have.attr', 'fill', 'purple');
+		cy.get('[data-cy=Badge]:eq(1) [data-cy=Icon]')
+			.should('exist') // is in dom
+			.and('have.attr', 'color', 'white');
+	});
+
+	it('Story: Badge Sizes And Color - md', () => {
+		cy.get('[data-cy=Badge]:eq(2) [data-cy=Box]:eq(0) svg')
+			.should('exist') // is in dom
+			.and('have.css', 'height', '32px')
+			.and('have.css', 'width', '32px');
+		cy.get('[data-cy=Badge]:eq(2) [data-cy=Box]:eq(0) svg path')
+			.should('exist') // is in dom
+			.and('have.attr', 'stroke', 'orange')
+			.and('have.attr', 'fill', 'white');
+		cy.get('[data-cy=Badge]:eq(2) [data-cy=Icon]')
+			.should('exist') // is in dom
+			.and('have.attr', 'color', 'orange');
+	});
+
+	it('Story: Badge Sizes And Color - lg', () => {
+		cy.get('[data-cy=Badge]:eq(3) [data-cy=Box]:eq(0) svg')
+			.should('exist') // is in dom
+			.and('have.css', 'height', '56px')
+			.and('have.css', 'width', '56px');
+		cy.get('[data-cy=Badge]:eq(3) [data-cy=Box]:eq(0) svg path')
+			.should('exist') // is in dom
+			.and('have.attr', 'stroke', 'orange')
+			.and('have.attr', 'fill', 'white');
+		cy.get('[data-cy=Badge]:eq(3) [data-cy=Icon]')
+			.should('exist') // is in dom
+			.and('have.attr', 'color', 'orange');
+	});
+});

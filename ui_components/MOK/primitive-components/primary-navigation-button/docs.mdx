@@ -1,0 +1,130 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The primary navigation button is a styled link that is shown in the Navigation Bar at the bottom of the screen to grab the user’s attention in order to drive their attention to perform primary navigation actions within the product (i.e. Get Started & Search).
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'iconName',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The name of the icon svg file e.g. `foo.svg` the name would be `foo`.
+				</p>
+			),
+		},
+		{
+			propName: 'type',
+			type: "'default' || 'admin'",
+			defaultValue: " 'default'",
+			description: <p>Primary Navigation Button type.</p>,
+		},
+		{
+			propName: 'primaryLabel',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: <p>Primary label's text.</p>,
+		},
+		{
+			propName: 'secondaryLabel',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: <p>Secondary label's text</p>,
+		},
+		{
+			propName: 'onClick',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when the primary navigation button is
+					clicked.
+				</p>
+			),
+		},
+		{
+			propName: 'onInfoButtonClick',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The function to be called when the info button (only in admin mode) is
+					clicked.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

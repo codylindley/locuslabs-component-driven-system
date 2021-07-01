@@ -1,0 +1,50 @@
+<Meta title="UI Component System Overview/Web Fonts" />
+
+<h1 style={{ marginBottom: '50px' }}>
+	UI Component System Overview : Web Fonts
+</h1>
+
+### Defining Fonts
+
+Web safe fonts as well as non-web-safe fonts are defined within a theme, for example:
+
+```js
+{
+...
+
+fonts: {
+		default: "Arial, sans-serif",
+	},
+
+...
+}
+```
+
+or, for example using a non-web-safe font:
+
+```js
+{
+...
+
+fonts: {
+		default: "'Roboto', sans-serif",
+	},
+
+...
+}
+```
+
+At runtime this value has to be extracted from the theme and applied to the body of the html element where the components are being used.
+
+### Non-web-safe Fonts
+
+The UI component system does not embed or manage the loading of non-web-safe font (i.e. if you don't load the font at runtime when you use the components then the components will not make use of the non-web safe font defined in the theme).
+
+Typically this requires linking to a hosted font, for example linking to something like a [google font](https://fonts.google.com/specimen/Roboto).
+
+```html
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet"
+/>
+```

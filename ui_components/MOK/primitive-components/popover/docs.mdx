@@ -1,0 +1,134 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The popover is an non-interactive dialog that sits on top of the application’s main UI. It provides helpful information about using the app to the end-user and are meant to be used primarily for supplemental content and should never get in the way of critical tasks. In most cases, the popover should not contain interactive content (i.e. buttons or links). The popover is not a required component in the rendered end user application and should be able to be hidden by the developer implementing it given that definition.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 750 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="locuslabs-ui-components-themes--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'content',
+			type: '<Node>',
+			defaultValue: 'undefined',
+			description: <p>The content of Popover displayed below the title.</p>,
+		},
+		{
+			propName: 'title',
+			type: '<string>',
+			defaultValue: 'undefined',
+			description: <p>Title of Popover.</p>,
+		},
+		{
+			propName: 'hideCloseBtn',
+			type: '<bool>',
+			defaultValue: 'false',
+			description: <p>Hides the close button.</p>,
+		},
+		{
+			propName: 'hideOnClickOutside',
+			type: '<bool>',
+			defaultValue: 'true',
+			description: <p>Hides the Popover when clicking outside of it.</p>,
+		},
+		{
+			propName: 'onClose',
+			type: '<function>',
+			defaultValue: 'undefined',
+			description: <p>Callback called after closing the Popover.</p>,
+		},
+		{
+			propName: 'placement',
+			type: (
+				<>
+					'auto-start' || 'auto' || <br />
+					'auto-end' || 'top-start' || 'top' ||
+					<br />
+					'top-end' || 'right-start' || 'right' ||
+					<br />
+					'right-end' || 'bottom-end' || 'bottom' ||
+					<br /> 'bottom-start' || 'left-end' || 'left' ||
+					<br />
+					'left-start'
+				</>
+			),
+			defaultValue: 'bottom',
+			description: (
+				<p>The placement of the popover in relation to the children.</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="locuslabs-ui-components-common-props-common-styling-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps
+	styleProps={['space', 'layout', 'flexbox', 'grid-layout', 'position']}
+/>
+
+see <LinkTo kind="locuslabs-ui-components-common-props-common-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

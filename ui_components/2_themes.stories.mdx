@@ -1,0 +1,28 @@
+import { Demo } from "/.storybook/shared_react_components/code-sandbox-demo";
+
+<Meta title="UI Component System Overview/Themes & Component Usage" />
+
+import LinkTo from '@storybook/addon-links/react';
+<h1 style={{ marginBottom: '50px' }}>
+	UI Component System Overview : Themes & Component Usage
+</h1>;
+
+---
+
+### TLTR
+
+Install the follow packages from the npm registry:
+
+`yarn add react react-dom styled-components polished @locus-labs/mol-desktop-default-theme @locus-labs/mol-desktop-primary-button`
+
+See code demo below for the implementation of a MOL desktop primary button.
+
+---
+
+Components require a theme and [normalize.css](https://necolas.github.io/normalize.css/) to run correctly. Components in Storybook (i.e. each story) are wrapped with a theme and a global [normalize css reset](https://necolas.github.io/normalize.css/) via [polished](https://polished.js.org/docs/#normalize) (See the `storybook-theme-decorator.js` files [found in the repository](https://gitlab.com/search?utf8=%E2%9C%93&search=storybook-theme-decorator.js&group_id=8259553&project_id=19130785&scope=&search_code=true&snippets=false&repository_ref=dev&nav_source=navbar) for details).
+
+To use a component in your application you'll need to wrap components the same way they are wrapped in Storybook. You'll need the correct <LinkTo kind="ui-component-system-overview-peer-dependencies--page">peer dependencies</LinkTo>, a theme, a component, and then wrap the component(s) correctly using the [Styled Components](https://styled-components.com/docs/advanced#theming) `<ThemeProvider />`. Typically, an entire application is wrapped once at the highest level in the component tree so that all child components can make use of the theme and global styles.
+
+Below is an example of how a theme, `normalize.css`, and the none web safe font Roboto (see `index.html`) is wrapped around a button component using the [Styled Components](https://styled-components.com/docs/advanced#theming) `<ThemeProvider />`.
+
+<Demo id='mol-desktop-primary-button-1ocdl' title='mol-desktop-primary-button' styles={{ height: 600 }} />

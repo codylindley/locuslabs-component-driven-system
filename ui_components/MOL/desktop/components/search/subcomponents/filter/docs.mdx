@@ -1,0 +1,147 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import DocNestedProp from '/.storybook/shared_react_components/doc-nested-prop';
+import LinkTo from '@storybook/addon-links/react';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+
+<h1 style={{ marginBottom: '50px' }}>
+	MOL Components &gt; Desktop &gt; Domain Component &gt; Search &gt;
+	Subcomponents &gt; Filter
+</h1>
+
+### Description
+
+The filter is a dropdown list that allows a user to sort the search POI results by selecting either 'Open' or 'All' and will only appear when the user taps enter/return on keyboard on a search term that yields results.
+
+---
+
+### Component Props
+
+<div style={{ overflowX: 'scroll' }}>
+	<table style={{ width: '100%' }}>
+		<thead>
+			<tr>
+				<th align="left">Props</th>
+				<th align="left">
+					Type <small style={{ color: '#999' }}>(* = required)</small>
+				</th>
+				<th align="left">Default</th>
+				<th align="left" style={{ minWidth: '300px' }}>
+					Description
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td align="left">
+					<code>filterOptions</code>
+				</td>
+				<td align="left">
+					<code>
+						<DocNestedProp>
+							{`[{
+	id: <string>*,
+	name: <string>*,
+}]`}
+						</DocNestedProp>
+					</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>Array of filter options (objects).</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>onFilterOptionClick</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>
+						Side effect of clicking filter option. Initially clicking any option
+						will collapse options dropdown.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>filterTooltipContent</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>'Filter Results'</code>
+				</td>
+				<td align="left">
+					<p>
+						The content used for the tooltip that appears on the filter mouse
+						over.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>filterCaption</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>&quot;Showing&quot;</code>
+				</td>
+				<td align="left">
+					<p>A caption that appears on the left side of the filter.</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>activeFilterOption</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>Active filter id.</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

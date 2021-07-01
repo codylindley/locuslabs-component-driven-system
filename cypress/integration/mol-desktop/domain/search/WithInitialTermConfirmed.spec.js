@@ -1,0 +1,27 @@
+describe('Search Component with intial term confirmed', () => {
+	// Note the use of `before`
+	before(() => {
+		// Visit the storybook iframe page once per file
+		cy.visitStorybook();
+	});
+
+	// Note the use of `beforeEach`
+	beforeEach(() => {
+		// The first parameter is the category. This is the `title` in CSF or the value in `storiesOf`
+		// The second parameter is the name of the story. This is the name of the function in CSF or the value in the `add`
+		// This does not refresh the page, but will unmount any previous story and use the Storybook Router API to render a fresh new story
+		cy.loadStory(
+			'MOL Components/Desktop/Domain Components/Search',
+			'WithInitialTermConfirmed'
+		);
+	});
+
+	it('Search input is populated with initial term and search is confirmed', () => {
+		cy.get('[data-cy=SearchInput] input').invoke('val').should('eq', 'shop');
+		cy.get('[data-cy=SearchButton]').should('not.exist');
+		cy.get('[data-cy=BackButton]').should('exist');
+		cy.get('[data-cy=SuggestedSearchRow]').should('not.exist');
+		cy.get('[data-cy=SearchTermRow]').should('not.exist');
+		cy.get('[data-cy=SearchPOIRow]').its('length').should('be.gt', 0);
+	});
+});

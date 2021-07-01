@@ -1,0 +1,163 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+import ComponentTitle from '/.storybook/shared_react_components/component-title/';
+import { Source } from '@storybook/addon-docs/blocks';
+import PackageLinks from '/.storybook/shared_react_components/package-links/';
+import { Demo } from '/.storybook/shared_react_components/code-sandbox-demo';
+import { ComponentCommonProps } from '/.storybook/shared_mdx_components/component-common-props/index.mdx';
+import { ComponentStylingProps } from '/.storybook/shared_mdx_components/component-styling-props/index.mdx';
+import { ComponentProps } from '/.storybook/shared_mdx_components/component-props/index.mdx';
+
+import {
+	name as packageName,
+	codeSandboxId,
+	componentType,
+} from './package.json';
+
+<h1 style={{ marginBottom: '50px', textTransform: 'capitalize' }}>
+	<ComponentTitle packageName={packageName} componentType={componentType} />
+</h1>
+
+<PackageLinks packageName={packageName} componentType={componentType} />
+
+### Description
+
+The Collapsible Component is a dynamic height container that renders a scrollable content in the Exploration UI. The content can be collapsed/expanded by clicking toggle button.
+
+---
+
+### Demo
+
+<Demo id={codeSandboxId} title={packageName} styles={{ height: 550 }} />
+
+---
+
+### Install
+
+<Source language="bash" code={`yarn add ${packageName}`} />
+
+or
+
+<Source language="bash" code={`npm import ${packageName}`} />
+
+Note: Components require the use of a <LinkTo kind="ui-component-system-overview-themes-component-usage--page">theme</LinkTo>.
+
+---
+
+### Component Props
+
+<ComponentProps
+	items={[
+		{
+			propName: 'isContentOpen',
+			type: '<boolean>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					Component toggle state. If <code>true</code> then component will be
+					expanded. If <code>false</code> then component will be collapsed.
+				</p>
+			),
+		},
+		{
+			propName: 'onCollapseButtonClick',
+			type: '<function>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>The function to be called when the collapse button is clicked.</p>
+			),
+		},
+		{
+			propName: 'collapsePanelTooltipContent',
+			type: '<string>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The content used for the tooltip that appears on the collapse button
+					when content is expanded.
+				</p>
+			),
+		},
+		{
+			propName: 'expandPanelTooltipContent',
+			type: '<string>*',
+			defaultValue: 'undefined',
+			description: (
+				<p>
+					The content used for the tooltip that appears on the collapse button
+					when content is collapsed.
+				</p>
+			),
+		},
+		{
+			propName: 'hasCustomScroll',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Set to <code>true</code> if scroll handler should be disabled and
+					scroll detection will happen externally. If set to <code>true</code>{' '}
+					then scroll overflow on the content will be disabled and if desired
+					has to be handled in children component.
+				</p>
+			),
+		},
+		{
+			propName: 'isContentScrolled',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					Set to <code>true</code> if scroll detection happened externally and
+					inner shadow should be applied.
+				</p>
+			),
+		},
+		{
+			propName: 'hasHeightOverride',
+			type: '<boolean>',
+			defaultValue: 'false',
+			description: (
+				<p>
+					By default Collapsible Content height will be automatically adjusted
+					based of the inner content height. If you set this prop to
+					<code>true</code> then content will stretch to fill 100% of the available
+					space and will not adjust it's height based on the content height. If you
+					want to change the Collapsible Content height pass it through <code>
+						height
+					</code> prop.
+				</p>
+			),
+		},
+	]}
+/>
+
+---
+
+### Component Common Props
+
+<ComponentCommonProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

@@ -1,0 +1,327 @@
+<!---
+
+React Components Blocks: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/docspage.md#slot-values
+
+CSF Stories with arbitrary MDX: https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md#csf-stories-with-arbitrary-mdx
+
+Note that in contrast to other examples, the MDX file suffix is .mdx rather than .stories.mdx. This key difference means that the file will be loaded with the default MDX loader rather than Storybook's CSF loader, which has several implications:
+
+You shouldn't provide a Meta declaration.
+You can refer to existing stories (i.e. <Story id="...">) but cannot define new stories (i.e. <Story name="...">).
+The documentation gets exported as the default export (MDX default) rather than as a parameter hanging off the default export (CSF).
+
+-->
+
+import LinkTo from '@storybook/addon-links/react';
+<h1 style={{ marginBottom: '50px' }}>
+	MOL Components &gt; Desktop &gt; Domain Component &gt; Search &gt;
+	Subcomponents &gt; Search Input
+</h1>;
+
+### Description
+
+The Search Input is where search phrases are executed to find Points of Interest (POIs) using exact names or via POI tags and descriptions within the Exploration UI.
+
+---
+
+### Component Props
+
+<div style={{ overflowX: 'scroll' }}>
+	<table style={{ width: '100%' }}>
+		<thead>
+			<tr>
+				<th align="left">Props</th>
+				<th align="left">
+					Type <small style={{ color: '#999' }}>(* = required)</small>
+				</th>
+				<th align="left">Default</th>
+				<th align="left" style={{ minWidth: '300px' }}>
+					Description
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td align="left">
+					<code>onSearchTermChange</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>The function to be called when the search term changed.</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>term</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>The term value.</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>placeholder</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>'Search'</code>
+				</td>
+				<td align="left">
+					<p>Input placeholder.</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>searchIconTooltipContent</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>&quot;Search&quot;</code>
+				</td>
+				<td align="left">
+					<p>
+						The content used for the tooltip that appears on the search icon.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>clearIconTooltipContent</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>&quot;Clear Search&quot;</code>
+				</td>
+				<td align="left">
+					<p>
+						The content used for the tooltip that appears on the clear (close)
+						icon.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>directionsIconTooltipContent</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>&quot;Get Directions&quot;</code>
+				</td>
+				<td align="left">
+					<p>
+						The content used for the tooltip that appears on the directions
+						icon.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>backIconTooltipContent</code>
+				</td>
+				<td align="left">
+					<code>{'<string>*'}</code>
+				</td>
+				<td align="left">
+					<code>&quot;Home&quot;</code>
+				</td>
+				<td align="left">
+					<p>
+						The content used for the tooltip that appears on the arrow-left
+						(back) icon.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>onBackButtonClick</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>
+						Side effect of arrow-left (back) icon click. Initially clicking
+						arrow-left (back) icon will reset search term and inactivate search
+						input.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>onClearButtonClick</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>
+						Side effect of clear (close) icon click. Initially clicking clear
+						(close) icon will reset search term and inactivate search input.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>onDirectionsIconClick</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>The function to be called when the directions icon is clicked.</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>onInputFocus</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>The function to be called when the input gets focused.</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<code>onReturnKeyPress</code>
+				</td>
+				<td align="left">
+					<code>{'<function>*'}</code>
+				</td>
+				<td align="left">
+					<code>undefined</code>
+				</td>
+				<td align="left">
+					<p>
+						The function to be called when the return (enter) key is executed.
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+### Component Common Props
+
+<table style={{ width: '100%' }}>
+	<thead>
+		<tr>
+			<th align="left">Props</th>
+			<th align="left">
+				Type <small style={{ color: '#999' }}>(* = required)</small>
+			</th>
+			<th align="left">Default</th>
+			<th align="left" style={{ minWidth: '300px' }}>
+				Description
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td align="left">
+				<code>as</code>
+			</td>
+			<td align="left">
+				<code>{'<string> || react node/component'}</code>
+			</td>
+			<td align="left">
+				<code>undefined</code>
+			</td>
+			<td align="left">
+				<p>
+					Switch out the root HTML element or React component use by a
+					component. For instance,{' '}
+					<code>&lt;Box as=&quot;span&quot; /&gt;</code> would render the Box
+					component as a span tag instead of the default div used by the Box
+					component.
+				</p>
+				<p>
+					This property is available to all LocusLabs components because all
+					LocusLabs components are constructed using{' '}
+					<a href="https://styled-components.com/">styled components</a> and
+					styled components provides the <code>as</code> prop (see{' '}
+					<a href="https://styled-components.com/docs/api#as-polymorphic-prop">
+						styled components documentation on the prop
+					</a>
+					).
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td align="left">
+				<code>forwardAs</code>
+			</td>
+			<td align="left">
+				<p>
+					<code>{'<string> || react node/component'}</code>
+				</p>
+			</td>
+			<td align="left">
+				<code>undefined</code>
+			</td>
+			<td align="left">
+				<p>
+					If you choose to wrap another component with the <code>styled()</code>
+					HOC that also accepts an <code>&quot;as&quot;</code> prop, use <code>
+						&quot;forwardedAs&quot;
+					</code> to pass along the desired prop to the wrapped component.
+				</p>
+				<p>
+					This property is available to all LocusLabs components because all
+					LocusLabs components are constructed using{' '}
+					<a href="https://styled-components.com/">styled components</a> and
+					styled components provides the <code>forwardAs</code> prop (see{' '}
+					<a href="https://styled-components.com/docs/api#forwardedas-prop">
+						styled components documentation on the prop
+					</a>
+					).
+				</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styled-system-props--page#common-props">
+Common Props</LinkTo>
+
+---
+
+### Component Common Styling Props
+
+<ComponentStylingProps />
+
+see <LinkTo kind="ui-component-system-overview-react-common-props-styling-props--page#common-styling-props">Common Styling Props</LinkTo>

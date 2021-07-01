@@ -1,0 +1,30 @@
+{
+	"name": "@locus-labs/mok-banner",
+	"version": "0.0.9",
+	"main": "dist/index.js",
+	"module": "index.js",
+	"dependencies": {
+		"@babel/runtime-corejs2": "^7.14.6",
+		"@locus-labs/vms-box": "latest",
+		"@locus-labs/vms-text": "latest",
+		"@styled-system/prop-types": "^5.1.5",
+		"prop-types": "^15.7.2",
+		"styled-system": "^5.1.5",
+		"styled-tools": "1.7.2"
+	},
+	"peerDependencies": {
+		"normalize.css": "8.0.1",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"styled-components": "5.2.1"
+	},
+	"author": "Julio Vila <julio@locuslabs.com>",
+	"license": "MIT",
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"codeSandboxId": "mok-banner-ym34f",
+	"componentType": "primitive",
+	"gitHead": "9cc832c9ec23b514dfea7901df1e6dff38201358"
+}
